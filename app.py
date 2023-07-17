@@ -1,13 +1,4 @@
-from flask import (
-    Flask,
-    session,
-    render_template,
-    redirect,
-    url_for,
-    flash,
-    abort,
-    request,
-)
+from flask import Flask,session,render_template,redirect,url_for,flash,abort,request
 from flask_bootstrap import Bootstrap
 from flask_mysqldb import MySQL
 import yaml
