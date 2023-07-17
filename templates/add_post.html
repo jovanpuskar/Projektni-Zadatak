@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container">
+        <h1>Add Post</h1>
+        <form method="POST" action="/posts/add">
+            <input type="hidden" name="user_id" value="{{ user_id }}">
+            <div class="form-group">
+                <label for="content">Content</label>
+                <textarea name="content" class="form-control" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Add Post</button>
+        </form>
+    </div>
+    
+{% endblock %}

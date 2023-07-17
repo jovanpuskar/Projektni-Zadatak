@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container">
+        <h1 class="text-center">Posts</h1>
+        {% for post in posts %}
+            <div class="card mb-3" style="border:1px solid #ccc;border-radius:10px;padding:5px 10px;margin-bottom:5px;">
+                <div class="card-body">
+                    <h5 class="card-title">Post ID: {{ post.id }}</h5>
+                    <p class="card-text">{{ post.content }}</p>
+                    <p class="card-text">Created at: {{ post.created_at }}</p>
+
+                    <div class="d-flex justify-content-end">
+                        <a href="/posts/{{ post.id }}" class="btn btn-info ml-2">View</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    
+{% endblock %}

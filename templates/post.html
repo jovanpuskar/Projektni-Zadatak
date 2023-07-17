@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container">
+        <h1>Post Details</h1>
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Post ID: {{ post.id }}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">Content: {{ post.content }}</h6>
+            <p class="card-text">Created at: {{ post.created_at }}</p>
+            <p class="card-text">Updated at: {{ post.updated_at }}</p>
+            <p class="card-text">Likes: {{ post.like_count }}</p>
+            {% if logged_in_user_id !=post.user_id  and not post.liked %}
+                <form method="POST" action="/posts/{{ post.id }}/like">
+                    <button type="submit" class="btn btn-primary">Like</button>
+                </form>
+            {% endif %}
+        </div>
+    </div>
+    <h2>Comments</h2>
+    {% if post.comments %}
+        <ul>
+            {% for comment in post.comments %}
+                <li>{{ comment.content }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No comments yet.</p>
+    {% endif %}
+    {% if logged_in_user_id !=post.user_id %}
+        <form method="POST" action="/posts/{{ post.id }}/comment">
+            <div class="form-group mt-3">
+                <label for="content">Leave a Comment</label>
+                <textarea name="content" class="form-control" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit Comment</button>
+        </form>
+    {% else %}
+        <p>Please <a href="/login">login</a> to leave a comment.</p>
+    {% endif %}
+    <a href="/" class="btn btn-secondary mt-3">Back to Posts</a>
+    </div>
+{% endblock %}
